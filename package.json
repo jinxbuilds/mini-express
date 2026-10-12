@@ -1,0 +1,29 @@
+{
+  "name": "mini-express",
+  "version": "1.0.0",
+  "description": "A zero-dependency re-implementation of Express.js, built from scratch to understand how it works under the hood.",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "lib"
+  ],
+  "scripts": {
+    "start": "node examples/notes-app/server.js",
+    "dev": "node --watch examples/notes-app/server.js",
+    "test": "node --test \"test/**/*.test.js\"",
+    "test:coverage": "node --test --experimental-test-coverage \"test/**/*.test.js\""
+  },
+  "keywords": [
+    "express",
+    "framework",
+    "web",
+    "http",
+    "router",
+    "middleware",
+    "from-scratch"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  }
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>mini-express · Notes demo</title>
+  <meta name="description" content="A demo app running on mini-express, a zero-dependency Express.js clone built from scratch.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="brand">
+        <img src="favicon.svg" alt="" width="36" height="36">
+        <span>mini-express</span>
+        <span class="badge" id="health-badge">checking…</span>
+      </div>
+      <h1>An Express.js clone, built from scratch.</h1>
+      <p class="lede">
+        Zero dependencies. Router, middleware pipeline, route params, body parsing, static files,
+        ETags and error handling — all written by hand. Everything on this page is served by it.
+      </p>
+
+      <ol class="pipeline" aria-label="Middleware pipeline for an API request">
+        <li><code>observability</code><small>request id + timing</small></li>
+        <li><code>static</code><small>falls through</small></li>
+        <li><code>rateLimit</code><small>/api only</small></li>
+        <li><code>json()</code><small>parses body</small></li>
+        <li><code>router.param</code><small>loads :id</small></li>
+        <li><code>handler</code><small>sends response</small></li>
+        <li><code>errorHandler</code><small>(err, req, res, next)</small></li>
+      </ol>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="notes" aria-labelledby="notes-title">
+      <div class="section-head">
+        <h2 id="notes-title">Notes <span class="muted" id="count"></span></h2>
+        <div class="filters">
+          <input type="search" id="search" placeholder="Search notes…" aria-label="Search notes">
+          <div class="tags" id="tag-filter" role="group" aria-label="Filter by tag"></div>
+        </div>
+      </div>
+
+      <form id="create-form" class="card create" autocomplete="off">
+        <input name="title" placeholder="Note title" maxlength="120" aria-label="Title">
+        <textarea name="body" rows="2" placeholder="Write something…" aria-label="Body"></textarea>
+        <div class="row">
+          <input name="tags" placeholder="tags, comma, separated" aria-label="Tags">
+          <button type="submit" class="primary">Add note</button>
+        </div>
+        <p class="form-error" id="form-error" role="alert"></p>
+      </form>
+
+      <div class="grid" id="notes-grid" aria-live="polite"></div>
+    </section>
+
+    <section id="console" aria-labelledby="console-title">
+      <div class="section-head">
+        <h2 id="console-title">API console</h2>
+        <p class="muted">Fire real requests at the server and inspect what comes back.</p>
+      </div>
+
+      <div class="presets" id="presets"></div>
+
+      <form id="console-form" class="card console">
+        <div class="row">
+          <select name="method" aria-label="HTTP method">
+            <option>GET</option><option>POST</option><option>PATCH</option>
+            <option>DELETE</option><option>PUT</option><option>OPTIONS</option><option>HEAD</option>
+          </select>
+          <input name="path" value="/api/health" aria-label="Path" spellcheck="false">
+          <button type="submit" class="primary">Send</button>
+        </div>
+        <textarea name="body" rows="4" spellcheck="false" placeholder='{ "title": "Request body (JSON)" }' aria-label="Request body"></textarea>
+      </form>
+
+      <div class="card response" id="response" hidden>
+        <div class="response-meta">
+          <span class="status" id="res-status"></span>
+          <span class="muted" id="res-time"></span>
+          <span class="muted" id="res-size"></span>
+        </div>
+        <details>
+          <summary>Response headers</summary>
+          <pre id="res-headers"></pre>
+        </details>
+        <pre id="res-body" class="body"></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap muted">
+    Built with <code>mini-express</code> — no Express, no npm dependencies.
+    Run <code>npm test</code> to see the test suite.
+  </footer>
+
+  <template id="note-template">
+    <article class="card note">
+      <header>
+        <h3></h3>
+        <div class="actions">
+          <button type="button" class="icon pin" title="Pin" aria-label="Toggle pin">📌</button>
+          <button type="button" class="icon delete" title="Delete" aria-label="Delete note">✕</button>
+        </div>
+      </header>
+      <p class="body"></p>
+      <footer>
+        <div class="tags"></div>
+        <time></time>
+      </footer>
+    </article>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>

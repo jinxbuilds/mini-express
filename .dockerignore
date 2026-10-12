@@ -1,0 +1,7 @@
+node_modules
+venv
+test
+coverage
+.git
+.github
+.claude
