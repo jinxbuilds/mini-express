@@ -2,7 +2,7 @@
 
 > A zero-dependency re-implementation of [Express.js](https://expressjs.com), built from scratch to understand how a Node.js web framework actually works.
 
-![CI](https://github.com/<your-username>/mini-express/actions/workflows/ci.yml/badge.svg)
+[![CI](https://github.com/jinxbuilds/mini-express/actions/workflows/ci.yml/badge.svg)](https://github.com/jinxbuilds/mini-express/actions/workflows/ci.yml)
 ![Node](https://img.shields.io/badge/node-%E2%89%A522-339933?logo=node.js&logoColor=white)
 ![Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-blue)
